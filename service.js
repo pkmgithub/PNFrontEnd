@@ -14,7 +14,8 @@ const urlB64ToUint8Array = base64String => {
 
 // saveSubscription saves the subscription to the backend
 const saveSubscription = async subscription => {
-    const SERVER_URL = 'https://powerful-mesa-70518.herokuapp.com/save-subscription'  // 'http://localhost:5000/save-subscription'   // 
+      const SERVER_URL = 'https://powerful-mesa-70518.herokuapp.com/save-subscription'  //
+   // const SERVER_URL = 'http://localhost:5000/save-subscription'   // 
     const response = await fetch(SERVER_URL, {
         method: 'post',
         headers: {
@@ -23,9 +24,9 @@ const saveSubscription = async subscription => {
         body: JSON.stringify(subscription),
     })
     console.log("saveSubscription executed ...")
+    
     return response.json()
 }
-
 
 
 self.addEventListener('activate', async () => {
@@ -37,12 +38,15 @@ self.addEventListener('activate', async () => {
         const options = { applicationServerKey, userVisibleOnly: true }
         const subscription = await self.registration.pushManager.subscribe(options)
         const response = await saveSubscription(subscription)
+        alert("Subscription added");
         console.log(JSON.stringify(subscription))
 
     } catch (err) {
         console.log('Error', err)
     }
 })
+
+
 
 // listen to push event from server
 self.addEventListener('push', function (event) {

@@ -13,6 +13,7 @@ const registerServiceWorker = async () => {
     return swRegistration;
 }
 
+
 const requestNotificationPermission = async () => {
     const permission = await window.Notification.requestPermission();
     // value of permission can be 'granted', 'default', 'denied'
