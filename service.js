@@ -14,7 +14,7 @@ const urlB64ToUint8Array = base64String => {
 
 // saveSubscription saves the subscription to the backend
 const saveSubscription = async subscription => {
-    const SERVER_URL = 'http://localhost:4000/save-subscription'
+    const SERVER_URL = 'https://powerful-mesa-70518.herokuapp.com/save-subscription'  // 'http://localhost:5000/save-subscription'   // 
     const response = await fetch(SERVER_URL, {
         method: 'post',
         headers: {
@@ -22,6 +22,7 @@ const saveSubscription = async subscription => {
         },
         body: JSON.stringify(subscription),
     })
+    console.log("saveSubscription executed ...")
     return response.json()
 }
 
